@@ -2,28 +2,33 @@
 layout: default
 ---
 
-mixin lia(link, content, to)
+mixin lia(link, img, to)
   - to = to || "_self"
-  a(href=link, target=to)
-    li= content
+  li
+    a(href=link, target=to)
+      - var s = "/images/nav/" + img + ".png"
+      img(src=s)
 
-.homepage.container.boxes
+.homepage.container
   #picture
-    a.about(class="hpbutton", href="/aboutme/")
-      img(src="/images/aboutmebig.png")
+    a.about(class="hpbutton", href="/aboutme")
+      img(src="/images/nav/aboutmebig.png")
       p about me
 
     .description
       p.
-        i am a belgian-american graphic and media design student currently based in london.
-      p i like meaningful design.
+        i am a belgian-american graphic and media design student currently based in london
+      p i like meaningful design
 
   #nav
-    .description bla
+    .description
+      h2 maxine <br /> van stratum <br /> grohol
+
+      h4 photographer <br /> graphic designer
 
     nav
       ul
-        +lia("/", "gd")
-        +lia("/", "photo")
-        +lia("/", "high")
-        +lia("/", "contact")
+        +lia("/graphic-design/", "gd")
+        +lia("/photography/", "picg")
+        +lia("/highlights", "hh")
+        +lia("/contact", "contactme")

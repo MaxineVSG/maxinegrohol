@@ -2,6 +2,8 @@
 # It is simply a CoffeeScript Object which is parsed by CSON
 docpadConfig = {
 
+	port: 3000
+
 	# =================================
 	# Template Data
 	# These are variables that will be accessible via our templates
@@ -169,14 +171,28 @@ docpadConfig = {
 				f.setMetaDefaults({ignored: true})
 
 
+		# Clean URLs
+		cleanurls: ->
+			@getCollection('html').findAllLive(cleanurl: $ne: false)
+
+
+		#BLAAHHHH
+		# bla: ->
+		# 	name = 'highlights'
+		# 	@getCollection('html').findAllLive(basename: $startsWith: name).on "add", (f) ->
+		# 		console.log "\n", f.meta.attributes
+
 	# =================================
 	# Plugin config
 	plugins:
-    stylus:
-      stylusLibraries:
-        nib: false
-        'axis-css': true
-        'jeet': true
+		stylus:
+			stylusLibraries:
+				nib: false
+				'axis-css': true
+				'jeet': true
+
+		cleanurls:
+			collectionName: 'cleanurls'
 
 }
 

@@ -67,13 +67,19 @@ dbg()
 /////////////////////////////////////////////////////////
 // Layout mixins
 
-box(num = 1, max_width = page_width)
-  vals = -get_column(1/4)
-  box_height = max_width * (vals[0] / 100)
-  box_margin = max_width * (vals[1] /100)
+$default_cols = -get_column(1/4)
+$default_margin = page_width * ($default_cols[1] / 100)
+
+//- Adds height and margin for a box
+box($num = 1, $green = true, $max_width = page_width)
+  $vals = -get_column(1/4)
+  box_height = $max_width * ($vals[0] / 100)
+  box_margin = $max_width * ($vals[1] /100)
   margin-bottom: box_margin
-  height: (num * box_height) + ((num - 1) * box_margin)
-  // height: page_width * (((num * box_height) + ((num - 1) * box_margin)) / 100)
+  height: ($num * box_height) + (($num - 1) * box_margin)
+  max-height: ($num * box_height) + (($num - 1) * box_margin)
+  if $green
+    background-color: green
 
 /////////////////////////////////////////////////////////
 // MAIN STYLING
@@ -82,7 +88,7 @@ body
   background: page-color
   background-size auto
   #content
-    margin-top 15px
+    margin-top $default_margin
 
 .container
   center(page_width, 0px)
@@ -97,19 +103,48 @@ body
 
   #picture
     box(2)
+    a.about
+      display block
+      margin 1em auto
+      text-align center
+      color font-color
+      font-weight bold
+      border none !important
+      p
+        transition opacity 0.2s linear
+        opacity 0
+      &:hover p
+        opacity 1
 
+    .description
+      padding 2.2em 4.8em 0em 4.8em
 
   #nav
     .description
-      box()
+      box(1, false)
+      padding-left 0.5em
+      h2,h4
+        line-height 1em
+        font-weight normal
+      h2
+        margin 0 0 1.5em 0
+        padding-top 1em
 
   nav
     ul
       padding 0
       margin 0
-    ul a
-      display block
+    li
       column(1/2 1/2, cycle: 2)
       box()
-      &:hover
+      display block
+      padding 3.5%
+    a:hover
         border none
+    img
+      max-width 103.5%
+      max-height 103.5%
+
+    img
+      display block;
+      margin 0 auto
