@@ -2,9 +2,14 @@
 layout: default
 ---
 
-.homepage.container
-  .half
-    a(class="hpbutton", href="/aboutme/")
+mixin lia(link, content, to)
+  - to = to || "_self"
+  a(href=link, target=to)
+    li= content
+
+.homepage.container.boxes
+  #picture
+    a.about(class="hpbutton", href="/aboutme/")
       img(src="/images/aboutmebig.png")
       p about me
 
@@ -13,6 +18,12 @@ layout: default
         i am a belgian-american graphic and media design student currently based in london.
       p i like meaningful design.
 
-  .half
-    nav.hp
-      
+  #nav
+    .description bla
+
+    nav
+      ul
+        +lia("/", "gd")
+        +lia("/", "photo")
+        +lia("/", "high")
+        +lia("/", "contact")

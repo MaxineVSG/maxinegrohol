@@ -58,11 +58,22 @@ tables()
 @import '_forms'
 
 // Uncomment to show divs:
-edit()
+// edit()
 
 dbg()
   border 1px black solid
 
+
+/////////////////////////////////////////////////////////
+// Layout mixins
+
+box(num = 1, max_width = page_width)
+  vals = -get_column(1/4)
+  box_height = max_width * (vals[0] / 100)
+  box_margin = max_width * (vals[1] /100)
+  margin-bottom: box_margin
+  height: (num * box_height) + ((num - 1) * box_margin)
+  // height: page_width * (((num * box_height) + ((num - 1) * box_margin)) / 100)
 
 /////////////////////////////////////////////////////////
 // MAIN STYLING
@@ -76,9 +87,29 @@ body
 .container
   center(page_width, 0px)
 
-.half
-  column(1/2)
+
+/////////////////////////////////////////////////////////
+// Homepage
+
+.homepage
+  #picture, #nav
+    column(1/2)
+
+  #picture
+    box(2)
 
 
-// Layout mixins
+  #nav
+    .description
+      box()
 
+  nav
+    ul
+      padding 0
+      margin 0
+    ul a
+      display block
+      column(1/2 1/2, cycle: 2)
+      box()
+      &:hover
+        border none
