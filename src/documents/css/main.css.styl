@@ -1,0 +1,84 @@
+---
+referecesOthers: true
+---
+/**
+ * Main stylesheet.
+ * Uses Axis extensions (http://roots.cx/axis/)
+ * And the Jeet grid (http://jeetframework.com/)
+ */
+/**
+ * Note:
+ *   gradients > nib
+ *   positions > nib
+ *   flexbox > nib
+ *   vendor > autoprefixer
+ *   grid > jeet
+ *   breakpoint > stylus
+ */
+/** Syntax Quick Reference
+ *  ----------------------
+ *   edit()
+ *   center(max_width = 1410px, pad = 0)
+ *   bp(w = breakpoint, mf = mobile_first)
+ *   endbp()
+ *   stack(pad = 0, align = center)
+ *   unstack()
+ *   align(direction = both)
+ *   cf()
+ *   column(ratios = 1, offset = 0, cycle = 0, uncycle = 0)
+ *   span(ratio = 1, offset = 0)
+ *   shift(ratios = 0, col_or_span = column)
+ *   unshift()
+ */
+
+// Pull in custom stuff
+@import '_settings'
+@import '_mixins'
+@import '_ionicons'
+
+
+/*** CSS Normalize ***/
+normalize-css()
+
+// Set box sizing right
+*, *:before, *:after, *::before, *::after
+  *behavior: url(js/vendor/boxsizing.htc)
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+/*** Done normalising ***/
+
+// Load basic styles
+base()
+typography()
+tables()
+
+// And custom forms
+@import '_forms'
+
+// Uncomment to show divs:
+edit()
+
+dbg()
+  border 1px black solid
+
+
+/////////////////////////////////////////////////////////
+// MAIN STYLING
+
+body
+  background: page-color
+  background-size auto
+  #content
+    margin-top 15px
+
+.container
+  center(page_width, 0px)
+
+.half
+  column(1/2)
+
+
+// Layout mixins
+

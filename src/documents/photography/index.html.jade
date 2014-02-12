@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Photography"
+type: "main"
+---
+
+
+//- So ideally, we want angular to handle this... 
+//- Each album should be clickable, go to /photogrpahy/:album/ 
+//- and show the pictures in that album
+
+div
+  p Albums:
+  each a in getCollection("photography").toJSON()
+    div
+      - url = '/photography/'+a.album+'/'
+      - thumbnail = url+a.thumb
+      a(href=url)
+        span= a.title
+        img(src=thumbnail)
