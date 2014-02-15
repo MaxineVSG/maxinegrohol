@@ -1,0 +1,38 @@
+//- Navigation mixins
+
+mixin lia(link, img, to)
+  - to = to || "_self"
+  li
+    a(href=link, target=to)
+      - var s = "/images/nav/" + img + ".png"
+      img(src=s)
+
+
+mixin nav(page)
+  .std-nav
+    div
+      a(href="/")
+        img(src="/images/nav/home.png")
+
+      h5.page= page
+    nav
+      ul
+        if (page != 'graphic design')
+          +lia("/graphic-design/", "gd")
+        if (page != 'photography')
+          +lia("/photography/", "picg")
+        if (page != 'highlights')
+          +lia("/highlights", "hh")
+        if (page != 'contact me')
+          +lia("/contact", "contactme")
+        if (page != 'about me')
+          +lia("/aboutme", "aboutme")
+
+
+//- Construct page structure for all std pages
+mixin page(p)
+  div.container(class=p)
+    +nav(p)
+
+    .std-container
+      block

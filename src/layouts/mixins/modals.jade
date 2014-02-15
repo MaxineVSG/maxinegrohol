@@ -1,0 +1,16 @@
+
+//- General modal
+mixin modal()
+  div.modal
+    button.close
+    .content
+      block
+
+mixin angular_modal(c, showVar, callback)
+  - callback = callback+'()' || showVar+"=false";
+  div.modal(ng-show=showVar, ng-init="#{showVar} = false")
+    .overlay(ng-click=callback)
+    .dialog(class=c)
+      button.close(ng-click=callback) Close
+      .content
+        block

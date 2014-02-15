@@ -1,8 +1,0 @@
-//- Layout to render albums
-
-div.pictures
-  each pic in getImages().toJSON()
-    div #{pic.basename} | #{pic.caption}
-
-div.caption
-  block caption

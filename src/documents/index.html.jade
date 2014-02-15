@@ -1,13 +1,7 @@
 ---
 layout: default
 ---
-
-mixin lia(link, img, to)
-  - to = to || "_self"
-  li
-    a(href=link, target=to)
-      - var s = "/images/nav/" + img + ".png"
-      img(src=s)
+include ../layouts/mixins/nav.jade
 
 .homepage.container
   #picture

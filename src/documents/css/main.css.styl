@@ -68,6 +68,7 @@ dbg()
 // Layout mixins
 
 $default_cols = -get_column(1/4)
+$default_height = page_width * ($default_cols[0] / 100)
 $default_margin = page_width * ($default_cols[1] / 100)
 
 //- Adds height and margin for a box
@@ -81,6 +82,7 @@ box($num = 1, $green = true, $max_width = page_width)
   if $green
     background-color: green
 
+
 /////////////////////////////////////////////////////////
 // MAIN STYLING
 
@@ -92,6 +94,83 @@ body
 
 .container
   center(page_width, 0px)
+
+img
+  display block
+
+a
+  border none !important
+
+nav ul
+  padding 0
+  margin 0
+  li
+    display block
+
+.std-container
+  column(3/4)
+
+.std-nav
+  column(1/4)
+  & > div
+    box(2)
+    background-color green
+    padding 5%
+    img
+      display inline
+  li
+    column(1/2 1/4, cycle: 2)
+    box(0.5)
+  img
+    margin 0 auto
+    max-width 100%
+    max-height 100%
+
+.thumbs
+  .thumb
+    box(1, false)
+    column(1/3 3/4, cycle: 3)
+    overflow-y hidden
+    a
+      display block
+      position relative
+      img
+        size 100%
+      span
+        position absolute
+        width 100%
+        text-align center
+        background-color grey
+        background-color rgba(255,255,255,0.4)
+        padding 0.2em 0
+        left 0
+        top -1.5em
+        transition all 0.2s linear
+      &:hover span
+        top 0
+
+.modal
+  // display none
+  .overlay
+    position fixed
+    width 100%
+    height 100%
+    top 0
+    left 0
+    z-index 9998
+    opacity 0.8
+    background-color #000
+    cursor pointer
+  .dialog
+    left 10%
+    right 10%
+    max-height 100%
+    z-index 9999
+    position absolute
+    // background-color #fff
+    // box-shadow 4px 4px 80px #000
+    button.close
+      position absolute
 
 
 /////////////////////////////////////////////////////////
@@ -109,12 +188,13 @@ body
       text-align center
       color font-color
       font-weight bold
-      border none !important
       p
         transition opacity 0.2s linear
         opacity 0
       &:hover p
         opacity 1
+      img
+        margin 0 auto
 
     .description
       padding 2.2em 4.8em 0em 4.8em
@@ -131,20 +211,66 @@ body
         padding-top 1em
 
   nav
-    ul
-      padding 0
-      margin 0
     li
       column(1/2 1/2, cycle: 2)
       box()
-      display block
       padding 3.5%
-    a:hover
-        border none
     img
+      margin 0 auto
       max-width 103.5%
       max-height 103.5%
 
-    img
-      display block;
+
+/////////////////////////////////////////////////////////
+// Albums
+
+.dialog.albumModal
+  max-height 80%
+  top 50px
+  .content
+    img.current
+      max-height 100%
       margin 0 auto
+    .next,.prev
+      position absolute
+      top 50%
+      cursor pointer
+      padding 20px 30px
+      background-color #fff
+      opacity 0.8
+    .next
+      right 0
+    .prev
+      left 0
+    footer, header
+      position absolute
+      width 100%
+      background-color #fff
+      opacity 0.8
+    header
+      top 0
+      padding 10px 10px 0 10px
+      h2
+        display inline-block
+        margin 0.2em 0.4em
+        max-width 30%
+      .photos
+        float right
+        height 80px
+        max-width 60%
+        overflow-x scroll
+        overflow-y hidden
+        white-space nowrap
+        ul
+          padding 0
+          margin 0
+          size 100%
+        li
+          display inline-block
+          cursor pointer
+        img
+          max-height 100%
+    footer
+      bottom 0
+      padding 30px 20px
+      color darken(font-color, 20%)

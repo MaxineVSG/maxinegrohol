@@ -48,7 +48,11 @@ docpadConfig = {
 
 			# The website's scripts
 			scripts: [
-				'//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
+				# '/js/vendor/jquery/jquery.min.js'
+				# '/js/vendor/handlebars/handlebars.min.js'
+				# '/js/vendor/ember/ember.min.js'
+				# 'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'
+				'http://code.jquery.com/jquery-1.11.0.min.js'
 				'/js/plugins.js'
 				'/js/main.js'
 			]
@@ -86,10 +90,18 @@ docpadConfig = {
 				album: @document.album
 			imgs = @getCollection('images').findAll(search, [{filename: 1}])
 			captions = @document.captions
+			ret = {}
 			imgs.each (img) ->
 				caption = captions[img.attributes.filename] || ""
-				img.setMetaDefaults({ caption })
-			return imgs
+				# img.setMetaDefaults({ caption })
+				# ret.push { img: img.attributes.outFilename, caption }
+				ret[img.attributes.outFilename] = caption
+
+			return ret
+
+		# Returns caption for current document
+		getCaption: ->
+			@document.caption || ""
 
 
 	# =================================

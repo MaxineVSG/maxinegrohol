@@ -3,18 +3,41 @@ layout: default
 title: "Photography"
 type: "main"
 ---
-
+include ../../layouts/mixins/nav.jade
+include ../../layouts/mixins/modals.jade
 
 //- So ideally, we want angular to handle this... 
 //- Each album should be clickable, go to /photogrpahy/:album/ 
 //- and show the pictures in that album
 
-div
-  p Albums:
-  each a in getCollection("photography").toJSON()
-    div
-      - url = '/photography/'+a.album+'/'
-      - thumbnail = url+a.thumb
-      a(href=url)
-        span= a.title
-        img(src=thumbnail)
+
++page('photography')
+
+  .thumbs(ng-controller="AlbumCtrl")
+
+    //- Prepare the modal
+    +angular_modal("albumModal", "showingAlbum", "closeAlbum")
+      span(ng-hide="albumLoaded") Loading...
+
+      div(ng-show="albumLoaded", ng-mousemove="mouseMoved()")
+        img.current(ng-src="{{currentImg.path}}")
+        .next(ng-click="nextPic()", ng-show="showControls") Next
+        .prev(ng-click="prevPic()", ng-show="showControls") Prev
+        header(ng-show="showControls")
+          h2 {{albumName}}
+          .photos
+            ul
+              li(ng-repeat="i in albumImgs", ng-click="showImg(i)")
+                img(ng-src="{{i.path}}")
+        footer(ng-show="showControls && currentImg.caption.length")
+          span {{currentImg.caption}}
+
+
+    //- Show thumbnails of the albums
+    each a in getCollection("photography").toJSON()
+      .thumb
+        - url = '/photography/'+a.album+'/'
+        - thumbnail = url+a.thumb
+        a(href="#", ng-click="loadAlbum('#{url}')")
+          span= a.title
+          img(src=thumbnail)
