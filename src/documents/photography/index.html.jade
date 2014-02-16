@@ -37,7 +37,7 @@ include ../../layouts/mixins/modals.jade
     each a in getCollection("photography").toJSON()
       .thumb
         - url = '/photography/'+a.album+'/'
-        - thumbnail = url+a.thumb
+        - thumbnail = '/photography/thumbnail/'+a.thumb
         a(href="#", ng-click="loadAlbum('#{url}')")
           span= a.title
           img(src=thumbnail)
