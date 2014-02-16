@@ -88,8 +88,8 @@ docpadConfig = {
 			search = 
 				type: @document.type
 				album: @document.album
-			imgs = @getCollection('images').findAll(search, [{filename: 1}])
-			captions = @document.captions
+			imgs = @getCollection('images').findAll(search, [{filename: 1}]) || []
+			captions = @document.captions || []
 			ret = {}
 			imgs.each (img) ->
 				caption = captions[img.attributes.filename] || ""

@@ -1,6 +1,5 @@
 {
   "title": <%- '"'+@document.title+'"' %>,
   "thumb": <%- '"'+@document.thumb+'"' %>,
-  "caption": <%- '"'+@document.caption+'"' %>,
   "images": <%- JSON.stringify(@getImages()) %>
 }

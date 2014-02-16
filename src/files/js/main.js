@@ -35,7 +35,7 @@ function fetch_album(a, $http, cb) {
   success(function(data) {
     console.log('got album:', data);
 
-    cb(data.title, data.caption, data.images);
+    cb(data.title, data.images);
   }).
   error(function(err) {
     console.log('error getting songs.json');
@@ -62,7 +62,7 @@ function AlbumCtrl($scope, $http, $timeout) {
     console.log('Loading album', a);
     $scope.showingAlbum = true;
 
-    fetch_album(a, $http, function(title, caption, imgs) {
+    fetch_album(a, $http, function(title, imgs) {
       $scope.albumName = title;
       $scope.albumLoaded = true;
       // TODO albumCaption?
