@@ -75,7 +75,7 @@ $default_cols = -get_column(1/4)
 $default_height = page_width * ($default_cols[0] / 100)
 $default_margin = page_width * ($default_cols[1] / 100)
 
-//- Adds height and margin for a box
+//- Adds height and margin for a box (jeet framework)
 box($num = 1, $green = true, $max_width = page_width)
   $vals = -get_column(1/4)
   box_height = $max_width * ($vals[0] / 100)
@@ -112,14 +112,11 @@ nav ul
     display block
 
 .std-container
-  // column(3/4)
   center(page_width, 0px)
 
 .std-nav
-  // column(1/4)
   group()
   & > div
-    // box(2)
     column(3/4)
     box(0.25)
   & > nav
@@ -132,8 +129,7 @@ nav ul
     display inline-block
     margin 0
   li
-    column(1/4 1/2)
-    // box(0.5)
+    column(1/4 1/2, cycle: 4)
     box(0.25)
   img
     margin 0 auto
@@ -143,7 +139,6 @@ nav ul
 .thumbs
   .thumb
     box(1, false)
-    // column(1/3 3/4, cycle: 3)
     column(1/4, cycle: 4)
     overflow-y hidden
     a
@@ -186,54 +181,6 @@ nav ul
     // box-shadow 4px 4px 80px #000
     button.close
       position absolute
-
-
-/////////////////////////////////////////////////////////
-// Homepage
-
-.homepage
-  #picture, #nav
-    column(1/2)
-
-  #picture
-    box(2)
-    a.about
-      display block
-      margin 1em auto
-      text-align center
-      color font-color
-      font-weight bold
-      p
-        transition opacity 0.2s linear
-        opacity 0
-      &:hover p
-        opacity 1
-      img
-        margin 0 auto
-
-    .description
-      padding 2.2em 4.8em 0em 4.8em
-
-  #nav
-    .description
-      box(1, false)
-      padding-left 0.5em
-      h2,h4
-        line-height 1em
-        font-weight normal
-      h2
-        margin 0 0 1.5em 0
-        padding-top 1em
-
-  nav
-    li
-      column(1/2 1/2, cycle: 2)
-      box()
-      padding 3.5%
-    img
-      margin 0 auto
-      max-width 103.5%
-      max-height 103.5%
 
 
 /////////////////////////////////////////////////////////
@@ -289,3 +236,77 @@ nav ul
       bottom 0
       padding 30px 20px
       color darken(font-color, 20%)
+
+
+/////////////////////////////////////////////////////////
+// Homepage
+
+.container.homepage
+  #picture, #nav
+    column(1/2)
+
+  #picture
+    box(2)
+    a.about
+      display block
+      margin 1em auto
+      text-align center
+      color font-color
+      font-weight bold
+      p
+        transition opacity 0.2s linear
+        opacity 0
+      &:hover p
+        opacity 1
+      img
+        margin 0 auto
+
+    .description
+      padding 2.2em 4.8em 0em 4.8em
+
+  #nav
+    .description
+      box(1, false)
+      padding-left 0.5em
+      h2,h4
+        line-height 1em
+        font-weight normal
+      h2
+        margin 0 0 1.5em 0
+        padding-top 1em
+
+  nav
+    li
+      column(1/2 1/2, cycle: 2)
+      box()
+      padding 3.5%
+    img
+      margin 0 auto
+      max-width 103.5%
+      max-height 103.5%
+
+
+/////////////////////////////////////////////////////////
+// Contact page
+
+.container.contact
+  .std-container > div
+    group()
+
+  .invite
+    column(1/4)
+  .email
+    column(1/4, offset: 2/4)
+    div
+      color font-color
+      text-align center
+      position relative
+      top: -15px
+  .linked-in
+    column(1/4, offset: 2/4)
+  .twitter
+    column(1/4)
+
+  .invite, .email, .linked-in, .twitter
+    box(1)
+    padding 1%

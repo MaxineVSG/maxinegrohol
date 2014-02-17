@@ -26,8 +26,8 @@ docpadConfig = {
 			]
 
 			# The default title of our website (and a shortened version)
-			title: "Maxine VSG"
-			shortTitle: "MVSG"
+			title: "Maxine van Stratum Grohol"
+			shortTitle: "MvSG"
 
 			# The website description (for SEO)
 			description: """

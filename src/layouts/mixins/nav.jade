@@ -5,7 +5,7 @@ mixin lia(link, img, to)
   li
     a(href=link, target=to)
       - var s = "/images/nav/" + img + ".png"
-      img(src=s)
+      img(src=s, alt=s)
 
 
 //- Nav for current url and title
