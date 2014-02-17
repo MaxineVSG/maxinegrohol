@@ -1,0 +1,38 @@
+---
+layout: default
+title: "Graphic Design"
+type: "main"
+---
+include ../../layouts/mixins/nav.jade
+include ../../layouts/mixins/modals.jade
+
++page('graphicdesign', 'graphic design')
+
+  .thumbs(ng-controller="AlbumCtrl")
+
+    //- Prepare the modal
+    +angular_modal("albumModal", "showingAlbum", "closeAlbum")
+      span(ng-hide="albumLoaded") Loading...
+
+      div(ng-show="albumLoaded", ng-mousemove="mouseMoved()")
+        img.current(ng-src="{{currentImg.path}}")
+        .next(ng-click="nextPic()", ng-show="showControls") Next
+        .prev(ng-click="prevPic()", ng-show="showControls") Prev
+        header(ng-show="showControls")
+          h2 {{albumName}}
+          .photos
+            ul
+              li(ng-repeat="i in albumImgs", ng-click="showImg(i)")
+                img(ng-src="{{i.path}}")
+        footer(ng-show="showControls && currentImg.caption.length")
+          span {{currentImg.caption}}
+
+
+    //- Show thumbnails of the albums
+    each a in getCollection("graphicdesign").toJSON()
+      .thumb
+        - url = '/graphicdesign/'+a.album+'/'
+        - thumbnail = '/graphicdesign/thumbnail/'+a.thumb
+        a(href="#", ng-click="loadAlbum('#{url}')")
+          span= a.title
+          img(src=thumbnail)

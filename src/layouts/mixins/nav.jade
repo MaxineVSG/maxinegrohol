@@ -8,31 +8,33 @@ mixin lia(link, img, to)
       img(src=s)
 
 
-mixin nav(page)
+//- Nav for current url and title
+mixin nav(url, title)
   .std-nav
     div
       a(href="/")
         img(src="/images/nav/home.png")
 
-      h5.page= page
+      h5.page= title
     nav
       ul
-        if (page != 'graphic design')
-          +lia("/graphic-design/", "gd")
-        if (page != 'photography')
+        if (url != 'graphicdesign')
+          +lia("/graphicdesign/", "gd")
+        if (url != 'photography')
           +lia("/photography/", "picg")
-        if (page != 'highlights')
+        if (url != 'highlights')
           +lia("/highlights", "hh")
-        if (page != 'contact me')
+        if (url != 'contact')
           +lia("/contact", "contactme")
-        if (page != 'about me')
+        if (url != 'aboutme')
           +lia("/aboutme", "aboutme")
 
 
 //- Construct page structure for all std pages
-mixin page(p)
-  div.container(class=p)
-    +nav(p)
+mixin page(u, p)
+  - p = p || u
+  div.container(class=u)
+    +nav(u, p)
 
     .std-container
       block

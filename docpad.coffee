@@ -138,7 +138,7 @@ docpadConfig = {
 	
 	collections:
 
-		# All photography albums
+		# All photography albums (index files)
 		photography: (database) ->
 			# Find all album index.html files
 			search = 
@@ -157,18 +157,39 @@ docpadConfig = {
 				# Add that collection to the metadata
 				doc.setMetaDefaults({ album, type: "photography", layout: 'album' })
 				# console.log "\n", doc.meta.attributes
+		
+
+		# And graphic design (index files)
+		graphicdesign: (database) ->
+			# Find all album index.html files
+			search = 
+				relativeDirPath: $startsWith: 'graphicdesign'
+				type: $ne: "main"
+				outExtension: 'html'
+
+			# Sort by title
+			byTitle = [{title:1}]
+
+			database.findAllLive(search, byTitle).on "add", (doc) ->
+
+				# Extract the album path
+				album = doc.attributes.relativeDirPath.split('/')[1]
+
+				# Add that collection to the metadata
+				doc.setMetaDefaults({ album, type: "graphicdesign", layout: 'album' })
+				# console.log "\n", doc.meta.attributes
 
 
 		# All graphic design and photography images
 		images: ->
 			search = 
 				contentType: $startsWith: 'image'
-				relativeDirPath: $startsWith: ['photography','graphic-design']
+				relativeDirPath: $startsWith: ['photography','graphicdesign']
 
 			@getCollection('documents').findAllLive(search).on "add", (img) ->
 				params = img.attributes.relativeDirPath.split('/')
 				album = params[1]  # folder name of album
-				type = params[0]   # either photography or graphic-design
+				type = params[0]   # either photography or graphicdesign
 
 				img.setMetaDefaults({album, type})
 
