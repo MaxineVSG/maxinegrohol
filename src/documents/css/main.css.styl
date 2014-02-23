@@ -68,6 +68,7 @@ dbg()
 [x-ng-cloak], .ng-cloak, .x-ng-cloak 
   display: none !important
 
+
 /////////////////////////////////////////////////////////
 // Layout mixins
 
@@ -85,6 +86,28 @@ box($num = 1, $green = true, $max_width = page_width)
   max-height: ($num * box_height) + (($num - 1) * box_margin)
   if $green
     background-color: green
+
+
+/////////////////////////////////////////////////////////
+// Basic 4 column grid with variable widths and offsets
+
+.row
+  group() 
+  & > div
+    box()
+    column(1/4)
+
+// width: 2,3,4
+// offset: 1,2,3
+for w in 2 3 4
+  .row > div.width{w}
+    width_calc = (($default_cols[0] + $default_cols[1]) * w) - $default_cols[1]
+    width: (width_calc)%
+
+for o in 1 2 3
+  .row > div.offset{o}
+    width_calc = ($default_cols[0] + $default_cols[1]) * w
+    margin-left (width_calc / 4)%
 
 
 /////////////////////////////////////////////////////////
