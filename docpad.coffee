@@ -41,8 +41,8 @@ docpadConfig = {
 
 			# The website's styles
 			styles: [
+				'/css/ionicons.min.css'
 				'/css/main.css'
-				# '/css/vendor/normalize.css'
 				# '/css/vendor/main.css'
 			]
 

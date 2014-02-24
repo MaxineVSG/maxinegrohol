@@ -20,17 +20,19 @@ include ../../layouts/mixins/modals.jade
       span(ng-hide="albumLoaded") Loading...
 
       div(ng-show="albumLoaded", ng-mousemove="mouseMoved()")
-        img.current(ng-src="{{currentImg.path}}")
-        .next(ng-click="nextPic()", ng-show="showControls") Next
-        .prev(ng-click="prevPic()", ng-show="showControls") Prev
-        header(ng-show="showControls")
+        //- img.current(ng-src="{{currentImg.path}}")
+        //- div.controls(ng-show="showControls")
+        .next(ng-click="nextPic()", ng-show="showControls")
+        .prev(ng-click="prevPic()", ng-show="showControls")
+        header
           h2 {{albumName}}
+          span {{currentImg.caption}}
+        img.current(ng-src="{{currentImg.path}}")
+        footer
           .photos
             ul
               li(ng-repeat="i in albumImgs", ng-click="showImg(i)")
                 img(ng-src="{{i.path}}")
-        footer(ng-show="showControls && currentImg.caption.length")
-          span {{currentImg.caption}}
 
 
     //- Show thumbnails of the albums

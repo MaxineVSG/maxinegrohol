@@ -13,7 +13,8 @@
     "docpad-plugin-livereload": "~2.5.6",
     "docpad-plugin-stylus": "~2.5.0",
     "docpad-plugin-cleanurls": "~2.6.2",
-    "docpad-plugin-eco": "~2.0.3"
+    "docpad-plugin-eco": "~2.0.3",
+    "marked": "~0.3.1"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {

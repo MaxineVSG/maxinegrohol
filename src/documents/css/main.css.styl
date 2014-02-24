@@ -85,7 +85,7 @@ box($num = 1, $green = true, $max_width = page_width)
   height: ($num * box_height) + (($num - 1) * box_margin)
   max-height: ($num * box_height) + (($num - 1) * box_margin)
   if $green
-    background-color: green
+    background-color green
 
 
 /////////////////////////////////////////////////////////
@@ -96,6 +96,12 @@ box($num = 1, $green = true, $max_width = page_width)
   & > div
     box()
     column(1/4)
+    &.white
+      background-color white
+    &.pad
+      padding 1%
+    p:first-child
+      margin-top 0
 
 // width: 2,3,4
 // offset: 1,2,3
@@ -122,11 +128,18 @@ body
 .container
   center(page_width, 0px)
 
+a
+  border none !important
+
+p
+  line-height 1.4em
+
 img
   display block
 
-a
-  border none !important
+div.img > img
+  margin 0 auto
+  max-width 100%
 
 nav ul
   padding 0
@@ -202,62 +215,78 @@ nav ul
     position absolute
     // background-color #fff
     // box-shadow 4px 4px 80px #000
-    button.close
+    .close
       position absolute
+      cursor pointer
+      font-size 2em
+      z-index 10000
+      left -10px
+      top -10px
 
 
 /////////////////////////////////////////////////////////
 // Albums
 
 .dialog.albumModal
-  max-height 80%
-  top 50px
+  max-height 70%
+  top 10%
   .content
     img.current
       max-height 100%
       margin 0 auto
-    .next,.prev
+    .controls
+      absolute top left
+      bottom 0
+      right 0
+
+    .next, .prev
       position absolute
       top 50%
       cursor pointer
       padding 20px 30px
-      background-color #fff
+      // background-color #fff
       opacity 0.8
+      font-size 2em
     .next
       right 0
+      ionicon(ion-arrow-right-b)
     .prev
       left 0
-    footer, header
-      position absolute
-      width 100%
-      background-color #fff
-      opacity 0.8
+      ionicon(ion-arrow-left-b)
+
+    .photos
+      // float right
+      margin 0 auto
+      height 80px
+      max-width 60%
+      overflow-x scroll
+      overflow-y hidden
+      white-space nowrap
+      ul
+        padding 0
+        margin 0
+        size 100%
+      li
+        display inline-block
+        cursor pointer
+      img
+        max-height 100%
+
+    h2
+      display inline-block
+      margin 0.2em 0.4em
+      max-width 30%
+    // footer, header
+    //   position absolute
+    //   width 100%
+    //   background-color #fff
+    //   opacity 0.8
     header
       top 0
       padding 10px 10px 0 10px
-      h2
-        display inline-block
-        margin 0.2em 0.4em
-        max-width 30%
-      .photos
-        float right
-        height 80px
-        max-width 60%
-        overflow-x scroll
-        overflow-y hidden
-        white-space nowrap
-        ul
-          padding 0
-          margin 0
-          size 100%
-        li
-          display inline-block
-          cursor pointer
-        img
-          max-height 100%
     footer
       bottom 0
-      padding 30px 20px
+      // padding 30px 20px
       color darken(font-color, 20%)
 
 

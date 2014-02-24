@@ -2,7 +2,6 @@
 // IONICONS, MADE NICER!
 
 ionicon(val)
-  content: val
   display: inline-block
   font-family: "Ionicons"
   speak: none
@@ -14,6 +13,10 @@ ionicon(val)
   line-height: 1
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
+  &:before
+    content: val
 
 ion-record = "\f21b"
 ion-close-circled = "\f128"
+ion-arrow-right-b = "\f10a"
+ion-arrow-left-b = "\f107"

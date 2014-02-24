@@ -53,6 +53,7 @@ function AlbumCtrl($scope, $http, $timeout) {
   $scope.currentCaption = '';
   $scope.showControls = true;
   var mvmtTimer = null;
+  var mouvement_timeout = 5000;  // 5 second movement timer
 
   // Keep track of the currently displayed image index
   var index = 0;
@@ -73,9 +74,9 @@ function AlbumCtrl($scope, $http, $timeout) {
       $scope.currentImg = $scope.albumImgs[0];
 
       // Set a timer for detecting mouse movement
-      mvmtTimer = $timeout(function() {
-        $scope.showControls = false;
-      }, 2000);
+      // mvmtTimer = $timeout(function() {
+      //   $scope.showControls = false;
+      // }, mouvement_timeout);
     });
   };
 
@@ -92,9 +93,9 @@ function AlbumCtrl($scope, $http, $timeout) {
     $scope.showControls = true;
     $timeout.cancel(mvmtTimer);
 
-    mvmtTimer = $timeout(function() {
-      $scope.showControls = false;
-    }, 2000);
+    // mvmtTimer = $timeout(function() {
+    //   $scope.showControls = false;
+    // }, mouvement_timeout);
   };
 
   $scope.showImg = function(i) {
