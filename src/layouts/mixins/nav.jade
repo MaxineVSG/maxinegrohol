@@ -18,12 +18,16 @@ mixin nav(url, title)
       h5.page= title
     nav
       ul
+        li
+          a(href="#highlights")
+            img(src="/images/nav/hh.png", alt="highlights")
+      
         if (url != 'graphicdesign')
           +lia("/graphicdesign/", "gd")
         if (url != 'photography')
           +lia("/photography/", "picg")
-        if (url != 'highlights')
-          +lia("/highlights", "hh")
+        // if (url != 'highlights')
+          // +lia("/highlights", "hh")
         if (url != 'contact')
           +lia("/contact", "contactme")
         if (url != 'aboutme')

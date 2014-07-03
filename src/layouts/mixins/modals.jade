@@ -10,7 +10,7 @@ mixin angular_modal(c, showVar, callback)
   - callback = callback+'()' || showVar+"=false";
   div.modal(ng-show=showVar, ng-cloak)
     .overlay(ng-click=callback)
-    .dialog(class=c)
-      .close.ion-close-circled(ng-click=callback)
-      .content
-        block
+    .close.ion-close-circled(ng-click=callback)
+    .modal-inner(class=c)
+      block
+      

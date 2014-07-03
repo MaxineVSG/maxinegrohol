@@ -1,4 +1,4 @@
-doctype 5
+doctype html
 //if lt IE 7
   html(class="no-js lt-ie9 lt-ie8 lt-ie7", lang="en")
 //if IE 7
@@ -17,14 +17,14 @@ html(class="no-js preload", lang="en", ng-app)
     meta(name="keywords", content=getPreparedKeywords())
     meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="author", content=site.author)
-    //- Place favicon.ico and apple-touch-icon.png in the root directory
+    //- TODO Place favicon.ico and apple-touch-icon.png in the root directory
 
     != getBlock('meta').add(site.meta).toHTML()
 
     != getBlock("styles").add(site.styles).toHTML()
 
     script(src="/js/vendor/modernizr-2.6.2.min.js")
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js")
+    // script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js")
 
 
   body
@@ -42,7 +42,7 @@ html(class="no-js preload", lang="en", ng-app)
       != content
 
 
-    script.
+    //- script.
       //- window.jQuery || document.write('<script src="/js/vendor/jquery-1.10.2.min.js"><\/script>')
     
     != getBlock('scripts').add(site.scripts, {defer:false}).toHTML()

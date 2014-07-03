@@ -12,6 +12,6 @@
   "dependencies": {
     "jquery": "~2.0.3",
     "lodash": "~2.4.1",
-    "ember": "~1.2"
+    "css-modal": "~1.1.8"
   }
 }

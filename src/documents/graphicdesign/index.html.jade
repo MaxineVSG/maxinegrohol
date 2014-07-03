@@ -4,35 +4,50 @@ title: "Graphic Design"
 type: "main"
 ---
 include ../../layouts/mixins/nav.jade
-include ../../layouts/mixins/modals.jade
+
+include ../../layouts/partials/highlights.jade
 
 +page('graphicdesign', 'graphic design')
 
-  .thumbs(ng-controller="AlbumCtrl")
-
-    //- Prepare the modal
-    +angular_modal("albumModal", "showingAlbum", "closeAlbum")
-      span(ng-hide="albumLoaded") Loading...
-
-      div(ng-show="albumLoaded", ng-mousemove="mouseMoved()")
-        img.current(ng-src="{{currentImg.path}}")
-        .next(ng-click="nextPic()", ng-show="showControls") Next
-        .prev(ng-click="prevPic()", ng-show="showControls") Prev
-        header(ng-show="showControls")
-          h2 {{albumName}}
-          .photos
-            ul
-              li(ng-repeat="i in albumImgs", ng-click="showImg(i)")
-                img(ng-src="{{i.path}}")
-        footer(ng-show="showControls && currentImg.caption.length")
-          span {{currentImg.caption}}
-
+  .thumbs
 
     //- Show thumbnails of the albums
     each a in getCollection("graphicdesign").toJSON()
       .thumb
         - url = '/graphicdesign/'+a.album+'/'
         - thumbnail = '/graphicdesign/thumbnail/'+a.thumb
-        a(href="#", ng-click="loadAlbum('#{url}')")
+        - modal_link = '#' + a.album
+        a(href=modal_link)
           span= a.title
           img(src=thumbnail)
+
+        // Album specific modal
+        section(class="modal modal--gallery", id=a.album, data-cssmodal-resize="true", tabindex="-1", role="dialog", aria-labelledby="modal-label", aria-hidden="true")
+          div.modal-inner
+            div.modal-content
+              .spinner
+                .spinner__outer
+                .spinner__inner
+
+              // Gallery detail view
+              .modal-detail(aria-live="polite", aria-atomic="false")
+
+              ul.modal--gallery-navigation
+                li
+                  a.modal--gallery-navigation-prev(title="Previous", href="#") Previous
+                li
+                  a.modal--gallery-navigation-next(title="Next", href="#") Next
+
+            div.modal--gallery-caption
+
+            footer
+              ul.modal-content-list(aria-hidden="true")
+                - var c = -1
+                each i in getImages(a)
+                  - c = c + 1
+                  - imgThumb = getThumbnail('graphicdesign/'+a.album+'/'+i.filename, "zoomcrop", {w: 80, h: 80})
+                  li(data-caption=i.caption)
+                    a(href=modal_link+'/'+c)
+                      img(alt=i.caption, src=imgThumb, data-src-fullsize=url+i.filename)
+                      
+          a.modal-close(href="#!" title="Close this modal" data-close="Close") &times;

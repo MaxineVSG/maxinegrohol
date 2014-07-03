@@ -2,8 +2,13 @@
 layout: default
 ---
 include ../layouts/mixins/nav.jade
+include ../layouts/mixins/modals.jade
+
+include ../layouts/partials/highlights.jade
 
 .homepage.container
+  // Main page below
+  
   #picture
     a.about(class="hpbutton", href="/aboutme")
       img(src="/images/nav/aboutmebig.png")
@@ -24,5 +29,9 @@ include ../layouts/mixins/nav.jade
       ul
         +lia("/graphicdesign/", "gd")
         +lia("/photography/", "picg")
-        +lia("/highlights", "hh")
+        
+        li
+          a(href="#highlights")
+            img(src="/images/nav/hh.png", alt="highlights")
+
         +lia("/contact", "contactme")

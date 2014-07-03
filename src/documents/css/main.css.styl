@@ -177,7 +177,7 @@ nav ul
     box(1, false)
     column(1/4, cycle: 4)
     overflow-y hidden
-    a
+    & > a
       display block
       position relative
       img
@@ -196,7 +196,7 @@ nav ul
       &:hover span
         top 0
 
-.modal
+.modal.IGNORE
   .overlay
     position fixed
     width 100%
@@ -204,7 +204,7 @@ nav ul
     top 0
     left 0
     z-index 9998
-    opacity 0.8
+    opacity 0.3
     background-color #000
     cursor pointer
   .dialog
@@ -227,17 +227,33 @@ nav ul
 /////////////////////////////////////////////////////////
 // Albums
 
-.dialog.albumModal
-  max-height 70%
+.dialog.albumModal.IGNORE
+  height 70%
   top 10%
+  
   .content
-    img.current
-      max-height 100%
-      margin 0 auto
-    .controls
-      absolute top left
-      bottom 0
-      right 0
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    // Structure:
+    // & > div
+    //   height: 100%
+    // header, footer
+    //   height: 15%
+    // .stage
+    //   height: 70%
+
+    .stage
+      img.current
+        max-height 100%
+        margin 0 auto
+
+    // .controls
+    //   absolute top left
+    //   bottom 0
+    //   right 0
 
     .next, .prev
       position absolute
@@ -254,41 +270,105 @@ nav ul
       left 0
       ionicon(ion-arrow-left-b)
 
-    .photos
-      // float right
-      margin 0 auto
-      height 80px
-      max-width 60%
-      overflow-x scroll
-      overflow-y hidden
-      white-space nowrap
-      ul
-        padding 0
-        margin 0
-        size 100%
-      li
-        display inline-block
-        cursor pointer
-      img
-        max-height 100%
+    // .photos
+    //   // float right
+    //   margin 0 auto
+    //   height 80px
+    //   max-width 60%
+    //   overflow-x scroll
+    //   overflow-y hidden
+    //   white-space nowrap
+    //   ul
+    //     padding 0
+    //     margin 0
+    //     size 100%
+    //   li
+    //     display inline-block
+    //     cursor pointer
+    //   img
+    //     max-height 100%
 
-    h2
-      display inline-block
-      margin 0.2em 0.4em
-      max-width 30%
-    // footer, header
-    //   position absolute
-    //   width 100%
-    //   background-color #fff
-    //   opacity 0.8
+    // h2
+    //   display inline-block
+    //   margin 0.2em 0.4em
+    //   max-width 30%
+    
+    footer, header
+      // position absolute
+      // width 100%
+      background-color #000
+      opacity 0.7
     header
-      top 0
-      padding 10px 10px 0 10px
+      // top 0
+      padding 5px 5px 0 5px
+      h2
+        margin 0.2em 0.4em
     footer
-      bottom 0
-      // padding 30px 20px
-      color darken(font-color, 20%)
+      // bottom 0
+      padding 20px 10px
+      // color darken(font-color, 20%)
 
+
+///////////////////////
+// Modal v2
+
+.modal--gallery
+  // Firstly, hide any overflows
+  .modal-inner
+    overflow-y: hidden
+
+  // Add 100px bottom padding to hold the thumbnails
+  .modal-content
+    padding-bottom 110px
+    border: 0
+  
+  .modal-detail
+    min-height: 200px
+    min-width: 200px
+
+  // And shift the footer up 100px (thumbs are max 80 pixels high)
+  footer
+    position relative
+    top -100px
+    padding 0
+    border-radius 0
+    border 0
+    ul.modal-content-list
+      position: absolute
+      display: block
+      white-space: nowrap
+      overflow-x: scroll
+      overflow-y: hidden
+      right: 20px
+      left: 20px
+      margin: 0
+      li
+        float: none
+        display: inline-block
+        padding-right: 0.3em
+        padding-left: 0
+
+  // Correct caption
+  .modal--gallery-caption
+    position: absolute
+    bottom: 110px
+    left: 20px
+    right: 20px
+    border: 0
+    color: #D8D8D8
+    background-color: rgba(0,0,0,0.5)
+    p
+      margin: 0.7em
+
+  // Nicer nav arrow colouring
+  .modal--gallery-navigation a
+    color: #435A63 !important
+    &::after
+      padding: 0
+
+  a.modal-close
+    color: #435A63 !important
+       
 
 /////////////////////////////////////////////////////////
 // Homepage
