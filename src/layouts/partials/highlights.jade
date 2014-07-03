@@ -1,0 +1,30 @@
+// Highlights modal
+section(class="modal modal--gallery", id="highlights", data-cssmodal-resize="true", tabindex="-1", role="dialog", aria-labelledby="modal-label", aria-hidden="true")
+  div.modal-inner
+    div.modal-content
+      .spinner
+        .spinner__outer
+        .spinner__inner
+
+      // Gallery detail view
+      .modal-detail(aria-live="polite", aria-atomic="false")
+
+      ul.modal--gallery-navigation
+        li
+          a.modal--gallery-navigation-prev(title="Previous", href="#") Previous
+        li
+          a.modal--gallery-navigation-next(title="Next", href="#") Next
+
+    div.modal--gallery-caption
+
+    footer
+      ul.modal-content-list(aria-hidden="true")
+        - var c = -1
+        each i in getHighlights()
+          - c = c + 1
+          - imgThumb = getThumbnail('highlights/'+i.filename, "zoomcrop", {w: 80, h: 80})
+          li(data-caption=i.caption)
+            a(href='#highlights/'+c)
+              img(alt=i.caption, src=imgThumb, data-src-fullsize='/highlights/'+i.filename)
+              
+  a.modal-close(href="#!" title="Close this modal" data-close="Close") &times;
