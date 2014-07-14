@@ -46,7 +46,7 @@ docpadConfig = {
             # The website's styles
             styles: [
                 '/css/ionicons.min.css'
-                '/js/vendor/css-modal/build/modal.css'
+                '/css/modal.css'
                 '/css/main.css'
                 # '/css/vendor/main.css'
             ]
