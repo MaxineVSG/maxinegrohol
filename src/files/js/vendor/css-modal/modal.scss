@@ -1,0 +1,34 @@
+/**
+ * CSS Modal
+ * http://drublic.github.com/css-modal
+ *
+ * @author Hans Christian Reinl - @drublic
+ */
+
+// Configuration variables
+@import 'modal-config';
+
+// Core operations
+@import 'modal-core';
+
+// Theme styles
+@import 'modal-theme';
+
+// Plugins
+@import 'plugins/modal-resize';
+@import 'plugins/gallery';
+@import 'plugins/spinner';
+
+// Relevant classes
+
+[data-cssmodal-resize] {
+	@extend %modal--resize;
+}
+
+[data-cssmodal-maxwidth] {
+	@extend %modal--resize;
+}
+
+.spinner {
+	@extend %spinner;
+}
