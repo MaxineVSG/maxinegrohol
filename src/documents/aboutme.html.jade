@@ -6,6 +6,13 @@ type: "main"
 ---
 include ../layouts/mixins/nav.jade
 
+include ../layouts/partials/highlights.jade
+
+mixin icon(imgsrc, caption)
+  .icon
+    span!= caption
+    img(src="/images/about/hobskills/"+imgsrc)
+
 +page('aboutme', 'about me')
   
   .row
@@ -17,14 +24,21 @@ include ../layouts/mixins/nav.jade
       p my perspective on design has also grown. i have a passion for both print and web design and now strive to learn more about the two through research, experimentation and whoever is willing to teach me!
 
   .row
-    div.offset1.img.white
-      img(src="/images/about/skills.png")
+    div.img.white
+      img(src="/images/about/skills.png", alt="Skills:")
     div.width2.white
-      p Skills columns
+      img(src="/images/about/skillbars.png", alt="Id, Ai, Ps, Ae, Fcp, HTML+CSS")
 
-  .row
-    div.width4.white
-      p icons
+  .row.white
+    div
+      +icon("bookd.png", "print design")
+      +icon("grid.png", "grid layouts <br /> composition")
+    div
+      +icon("webd.png", "web design")
+      +icon("team.png", "team work")
+    div
+      +icon("brlogo.png", "brand identities <br /> logo design")
+      +icon("lightbulb.png", "quick thinker <br /> idea generator")
 
   .row
     div.img.white.offset1
@@ -48,7 +62,7 @@ include ../layouts/mixins/nav.jade
 
   .row
     div.width4.img.white
-      img(src="/images/about/map.png")
+      img.map(src="/images/about/map.png")
 
   .row
     div.width2.pad
@@ -66,8 +80,15 @@ include ../layouts/mixins/nav.jade
     div.img.white
       img(src="/images/about/workex.png")
 
-  .row
-    div.img.white
+  .row.white
+    div.img
       img(src="/images/about/hobbies.png")
-    div.width3.white
-      p hobbies here
+    div
+      +icon("music.png", "music")
+      +icon("ski.png", "sport")
+    div
+      +icon("bookd.png", "reading")
+      +icon("travel.png", "travel")
+    div
+      +icon("learn.png", "learning")
+      +icon("langu.png", "languages")

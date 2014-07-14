@@ -103,6 +103,9 @@ box($num = 1, $green = true, $max_width = page_width)
     p:first-child
       margin-top 0
 
+.row.white > div
+  background-color white
+
 // width: 2,3,4
 // offset: 1,2,3
 for w in 2 3 4
@@ -422,7 +425,10 @@ nav ul
 // Contact page
 
 .container.contact
-  .std-container > div
+  .plane
+    background url("/images/contact/plane.png") no-repeat center 60px fixed
+
+  .plane > div
     group()
 
   .invite
@@ -442,3 +448,22 @@ nav ul
   .invite, .email, .linked-in, .twitter
     box(1)
     padding 1%
+
+
+/////////////////////////////////////////////////////////
+// About me page
+
+.container.aboutme
+  .map
+    float right
+
+  .icon
+    height 50%
+    overflow hidden
+    img
+      display inline-block
+      height 100%
+      float left
+    span
+      display inline-block
+      margin-top 30px

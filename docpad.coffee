@@ -18,7 +18,7 @@ docpadConfig = {
         # Specify some site properties
         site:
             # The production url of our website
-            url: "http://maxinegrohol.com"
+            url: "http://maxinevsg.com"
 
             # Author
             author: "Maxine van Stratum Grohol"
